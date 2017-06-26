@@ -1,0 +1,58 @@
+<div *ngIf='isEditMode == false'>
+  <h3>Create Task</h3>
+  <form name="taskComposer" (submit)="createTask()">
+
+    <div class="row">
+      <div class="col-lg-offset-3 col-lg-6">
+        <div class="input-group">
+          <input  type="text" [giveFocus]
+                  class="form-control"
+                  placeholder="An important task"
+                  [(ngModel)]="taskEditorCreateTextField"
+                  [ngModelOptions]="{standalone: true}" />
+          <span class="input-group-btn">
+            <button (click)="createTask()" class="btn btn-secondary" type="button">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<div *ngIf='isEditMode == true'>
+  <h3>Edit Task</h3>
+  <form name="taskEditor" (submit)="updateTask()">
+
+    <div class="row">
+      <div class="col-lg-offset-3 col-lg-6">
+        <div class="input-group">
+          <input  type="text" [giveFocus]
+                  class="form-control"
+                  placeholder="An important task"
+                  [(ngModel)]="taskEditorUpdateTextField"
+                  [ngModelOptions]="{standalone: true}" />
+          <span class="input-group-btn">
+            <button (click)="updateTask()" class="btn btn-secondary" type="button">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<ul class="list-group">
+  <li *ngFor="let task of tasks" id="task-{{task.id}}" class="list-group-item"
+      [ngClass]="{'active':selectedTask != null && selectedTask.id == task.id}">
+    <button type="button" class="close close-button" aria-label="Close"
+            (click)="deleteTask(task)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div (click)="selectTask(task)" [innerHTML]="task.text"></div>
+  </li>
+</ul>

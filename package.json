@@ -1,0 +1,38 @@
+{
+  "name": "todo-service",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "gulp serve",
+    "preinstall": "cd ./app/; npm install"
+  },
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "cookie-parser": "^1.4.3",
+    "debug": "~2.6.3",
+    "ejs": "^2.5.6",
+    "express": "~4.15.2",
+    "express-session": "^1.15.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-rm": "^1.0.4",
+    "html-entities": "^1.2.1",
+    "mongoose": "^4.10.8",
+    "mongoose-sanitizer": "^1.0.0",
+    "morgan": "~1.8.1",
+    "passport": "^0.3.2",
+    "passport-twitter": "^1.0.4",
+    "promise": "^8.0.0",
+    "serve-favicon": "~2.4.2",
+    "socketio": "^1.0.0",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-ruby-sass": "^2.1.1",
+    "jshint": "^2.9.5"
+  }
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title><%= title %></title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <% if(!isLoggedIn) { %>
+    <div class="login-alert alert alert-warning" role="alert">
+      <div style="float:right;">
+        <a href="/auth/twitter">Sign in with Twitter</a>
+      </div>
+      <span><strong>Warning!</strong> you are not logged in. This is <strong>public</strong>, login for a private list.</span>
+    </div>
+  <% } else  { %>
+      <div class="login-alert alert alert-info" role="alert">
+        <div style="float:right;">
+          <a href="/logout"><%= user.profile.displayName %></a>
+        </div>
+        <strong>Heads up!</strong> You are logged in to your <strong>private</strong> list.
+      </div>
+  <% } %> %>
+  <app-root></app-root>
+</html>
+<script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="styles.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
