@@ -6,8 +6,9 @@ The single page application is written in
 javascript with Nodejs, MongoDB through [Mongoose](http://mongoosejs.com/)
 object data modeling, Express for the web-server.
 
-The server and client communicate almost exclusively through socket.io channels
-to provide real-time behaviour.
+The server and client communicate almost exclusively via
+[socket.io](https://socket.io/) channels to provide performant real-time
+behaviour.
 
 Accounts are authenticated using Twitter, via the [passport](http://passportjs.org/)
 middleware in express, while the sessions are shared with socket.io clients.
