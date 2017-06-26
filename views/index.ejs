@@ -8,21 +8,58 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+
+  <ul class="nav nav-tabs">
+    <% if (user) { %>
+    <li role="presentation">
+      <a href="#public">
+        <span class="glyphicon glyphicon-globe"></span>
+        &nbsp;
+        <span>Public</span>
+      </a>
+    </li>
+    <li role="presentation" class="active">
+      <a href="#user">
+        <span class="glyphicon glyphicon-user"></span>
+        &nbsp;
+        <span><%= user.profile.displayName %></span>
+      </a>
+    </li>
+    <% } else { %>
+    <li role="presentation" class="active">
+      <a href="#public">
+        <span class="glyphicon glyphicon-globe"></span>
+        &nbsp;
+        <span>Public</span>
+      </a>
+    </li>
+    <% } %>
+  </ul>
+
   <% if(!isLoggedIn) { %>
     <div class="login-alert alert alert-warning" role="alert">
       <div style="float:right;">
-        <a href="/auth/twitter">Sign in with Twitter</a>
+        <span class="glyphicon glyphicon-user"></span>
+        &nbsp;
+        <a href="/auth/twitter">
+          <span>Sign in with Twitter</span>
+        </a>
       </div>
       <span><strong>Warning!</strong> you are not logged in. This is <strong>public</strong>, login for a private list.</span>
     </div>
   <% } else  { %>
       <div class="login-alert alert alert-info" role="alert">
         <div style="float:right;">
-          <a href="/logout"><%= user.profile.displayName %></a>
+          <span class="glyphicon glyphicon-log-out"></span>
+          &nbsp;
+          <a href="/logout">
+            <span>log out</span>
+          </a>
         </div>
         <strong>Heads up!</strong> You are logged in to your <strong>private</strong> list.
       </div>
   <% } %> %>
+
   <app-root></app-root>
 </html>
 <script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="styles.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script>
