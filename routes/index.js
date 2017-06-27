@@ -1,18 +1,23 @@
-var express = require('express');
-var router = express.Router();
+const router = require('express').Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
+module.exports = function(app, sessionMiddleware) {
 
-  //console.log(req.session);
-  //console.log(req.user);
+  // Twitter
+  const twitterAuth = require('./twitter.js');
+  twitterAuth(app);
 
-  res.render('index', {
-    title: 'Angular ToDo',
-    isLoggedIn: req.user != null,
-    user: req.user
+  // socket.io routes
+  const socketIoRoute = require('./io/index.js')
+  socketIoRoute(app, sessionMiddleware);
+
+  // Main SPA entry
+  router.get('/', function(req, res, next) {
+    res.render('index', {
+      title: 'Angular ToDo',
+      isLoggedIn: req.user != null,
+      user: req.user
+    });
   });
 
-});
-
-module.exports = router;
+  return router;
+}

@@ -6,13 +6,12 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
-const database = require('./models/db.js');
 
+const database = require('./models/db.js');
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(cookieParser());
@@ -31,16 +30,9 @@ app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// socket.io routes
-const io = require('./routes/io/index.js')(app, sessionMiddleware);
-
-// traditional routes
-const indexRoute = require('./routes/index.js');
-app.use('/', indexRoute);
-
-// Twitter
-const twitterAuth = require('./routes/twitter.js');
-twitterAuth(app);
+// Routes
+const routes = require('./routes')(app, sessionMiddleware);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
