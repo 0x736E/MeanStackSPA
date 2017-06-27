@@ -18,9 +18,9 @@ export class GiveFocusDirective {
     setTimeout( () => {
       if(target.selectionStart == target.selectionEnd) {
         target.focus();
-        target.setSelectionRange(0, 100);
+        target.setSelectionRange(0, target.value.length);
       }
-    }, 100);
+    }, 10);
 
   }
 
