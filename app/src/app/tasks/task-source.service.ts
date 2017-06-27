@@ -25,7 +25,6 @@ export class TaskSourceService {
 
         // select our unique task channel
         this._channels.task += this.socket.ioSocket.id;
-        //console.log('[socket.io] ' +this._channels.task);
 
         this.socket.on(this._channels.task, (taskWrap: TaskWrapper) => {
           //console.log(JSON.stringify(taskWrap));
@@ -69,8 +68,6 @@ export class TaskSourceService {
 
       let taskWrap: TaskWrapper = new TaskWrapper(TaskWrapper.CREATE, task);
       this.socket.emit(this._channels.task, taskWrap);
-
-      //console.log(JSON.stringify(taskWrap));
     }
 
     public updateTask(task: Task) {
@@ -81,8 +78,6 @@ export class TaskSourceService {
 
       let taskWrap: TaskWrapper = new TaskWrapper(TaskWrapper.UPDATE, task);
       this.socket.emit(this._channels.task, taskWrap);
-
-      //console.log(JSON.stringify(taskWrap));
     }
 
     public deleteTask(task: Task) {
@@ -95,7 +90,5 @@ export class TaskSourceService {
         id: task.id
       });
       this.socket.emit(this._channels.task, taskWrap);
-
-      //console.log(JSON.stringify(taskWrap));
     }
 }
