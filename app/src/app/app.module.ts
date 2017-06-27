@@ -5,7 +5,7 @@ import { HotkeyModule } from 'angular2-hotkeys';
 
 // Socket.io
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
-const config: SocketIoConfig = {
+const socketIoConfig: SocketIoConfig = {
   url: 'http://localhost:8988',     // TODO: Change to hosted URL
 	options: {}
 };
@@ -20,6 +20,14 @@ import { TaskSourceService } from './tasks/task-source.service';
 // Misc
 import { GiveFocusDirective } from './give-focus.directive';
 
+// UI Router
+import { UIRouterModule } from "@uirouter/angular";
+let uiRouterConfig = {
+  states: [],
+  useHash: true
+};
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,8 +37,9 @@ import { GiveFocusDirective } from './give-focus.directive';
   imports: [
     BrowserModule,
     FormsModule,
-    SocketIoModule.forRoot(config),
-    HotkeyModule.forRoot(),
+    UIRouterModule.forRoot(uiRouterConfig),
+    SocketIoModule.forRoot(socketIoConfig),
+    HotkeyModule.forRoot()
   ],
   providers: [TaskSourceService],
   bootstrap: [AppComponent]

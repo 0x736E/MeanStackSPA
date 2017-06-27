@@ -35,7 +35,7 @@
     </div>
 
     <div *ngIf='isEditMode == true'>
-      <form name="taskEditor" (submit)="updateTask()">
+      <form name="taskEditor" (submit)="updateFormTask()">
 
         <div class="row">
           <div class="col-lg-offset-3 col-lg-6">
@@ -46,7 +46,7 @@
                       [(ngModel)]="taskEditorUpdateTextField"
                       [ngModelOptions]="{standalone: true}" />
               <span class="input-group-btn">
-                <button (click)="updateTask()" class="btn btn-secondary" type="button">
+                <button (click)="updateFormTask()" class="btn btn-secondary" type="button">
                   <span class="glyphicon glyphicon-pencil"></span>
                 </button>
               </span>
