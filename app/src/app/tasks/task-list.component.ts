@@ -25,7 +25,8 @@ export class TaskListComponent implements OnInit {
                 private _changeDetector: ChangeDetectorRef,
                 private _hotkeysService: HotkeysService) {
 
-    this._hotkeysService.add(new Hotkey('esc', (event: KeyboardEvent): boolean => {
+    this._hotkeysService.add(new Hotkey(
+      'esc', (event: KeyboardEvent): boolean => {
         this.exitEditMode();
         return false;
     }));
@@ -137,7 +138,8 @@ export class TaskListComponent implements OnInit {
     }
 
     if(this.selectedTask != null) {
-      console.log('> Deselect: ' + this.selectedTask.text + ' (' + this.selectedTask.id + ')')
+      console.log('> Deselect: ' +  this.selectedTask.text +
+                                    ' (' + this.selectedTask.id + ')')
     }
 
     this.isEditMode = false;
@@ -145,10 +147,15 @@ export class TaskListComponent implements OnInit {
   }
 
   public createTask() {
-    let taskText = this._sanitizer.sanitize(SecurityContext.HTML, this.taskEditorCreateTextField.trim());
-    if(taskText.length < 1) {
+
+    if( this.taskEditorCreateTextField == null ||
+        this.taskEditorCreateTextField.length < 1) {
       return;
     }
+
+    let taskText = this._sanitizer.sanitize(
+      SecurityContext.HTML,
+      this.taskEditorCreateTextField.trim());
 
     let newTask = new Task(taskText);
     this.taskEditorCreateTextField = "";
